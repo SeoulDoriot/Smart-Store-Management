@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__65fb6925-5026-44ce-9a73-a06057d488cd__list_projects",
+      "mcp__65fb6925-5026-44ce-9a73-a06057d488cd__list_organizations",
+      "mcp__65fb6925-5026-44ce-9a73-a06057d488cd__list_tables",
+      "mcp__65fb6925-5026-44ce-9a73-a06057d488cd__apply_migration",
+      "Bash(mkdir -p /Users/seouldorito/Desktop/Website/app/receipt/\\\\[id\\\\])",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npx tsc *)",
+      "Bash(node -e ' *)",
+      "Bash(npx next *)",
+      "Bash([ -f \"/Users/seouldorito/Desktop/Website/app/admin/$dir/page.tsx\" ])",
+      "Bash(find /Users/seouldorito/Desktop -maxdepth 4 -name \"*.md\" -not -path \"*/node_modules/*\" -not -path \"*/.next/*\" 2>/dev/null | head -30)",
+      "Bash(npm install *)",
+      "WebFetch(domain:api.telegram.org)",
+      "Bash(npx tsx *)",
+      "Bash(pkill -f \"tsx src/index.ts\")",
+      "mcp__65fb6925-5026-44ce-9a73-a06057d488cd__execute_sql"
+    ]
+  }
+}
