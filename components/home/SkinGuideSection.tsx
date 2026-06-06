@@ -1,22 +1,64 @@
 import Link from "next/link";
+import {
+  Droplet,
+  Leaf,
+  Flower2,
+  CircleDashed,
+  Sparkles,
+  Sprout,
+  Sun,
+  Flame,
+  Star,
+  Droplets,
+  type LucideIcon,
+} from "lucide-react";
 
-const SKIN_TYPES = [
-  { label: "Oily", icon: "💧", desc: "Balance sebum" },
-  { label: "Dry", icon: "🌿", desc: "Deep moisture" },
-  { label: "Sensitive", icon: "🌸", desc: "Soothe & calm" },
-  { label: "Combination", icon: "☯️", desc: "Balance zones" },
-  { label: "Normal", icon: "✨", desc: "Maintain glow" },
-  { label: "Acne-Prone", icon: "🍃", desc: "Clear skin" },
+type NeedCard = {
+  label: string;
+  desc: string;
+  icon: LucideIcon;
+  href: string;
+};
+
+const SKIN_TYPES: NeedCard[] = [
+  { label: "Oily", desc: "Balance sebum", icon: Droplet, href: "/skincare" },
+  { label: "Dry", desc: "Deep moisture", icon: Leaf, href: "/skincare" },
+  { label: "Sensitive", desc: "Soothe & calm", icon: Flower2, href: "/skincare" },
+  { label: "Combination", desc: "Balance zones", icon: CircleDashed, href: "/skincare" },
+  { label: "Normal", desc: "Maintain glow", icon: Sparkles, href: "/skincare" },
+  { label: "Acne-Prone", desc: "Clear skin", icon: Sprout, href: "/skincare" },
 ];
 
-const CONCERNS = [
-  { label: "Acne", icon: "🌿", bg: "bg-[#F2EDE8]", text: "text-[#7A5540]" },
-  { label: "Dark Spots", icon: "✨", bg: "bg-[#F5EFD8]", text: "text-[#8A7030]" },
-  { label: "Redness", icon: "🌸", bg: "bg-[#FAE8EC]", text: "text-[#B04060]" },
-  { label: "Hydration", icon: "💧", bg: "bg-[#E5EFF8]", text: "text-[#3060A0]" },
-  { label: "Brightening", icon: "💫", bg: "bg-[#F8F4DC]", text: "text-[#907820]" },
-  { label: "Sun Protection", icon: "☀️", bg: "bg-[#E8F4E8]", text: "text-[#307030]" },
+const CONCERNS: NeedCard[] = [
+  { label: "Acne", desc: "Clear breakouts", icon: Sprout, href: "/skincare?concern=Acne" },
+  { label: "Dark Spots", desc: "Even tone", icon: Star, href: "/skincare?concern=Dark+Spots" },
+  { label: "Redness", desc: "Calm & soothe", icon: Flame, href: "/skincare?concern=Redness" },
+  { label: "Hydration", desc: "Lasting moisture", icon: Droplets, href: "/skincare?concern=Dryness" },
+  { label: "Brightening", desc: "Glow boost", icon: Sparkles, href: "/skincare?sub=Serums" },
+  { label: "Sun Protection", desc: "Daily SPF", icon: Sun, href: "/skincare?sub=Sunscreens" },
 ];
+
+function NeedGrid({ cards }: { cards: NeedCard[] }) {
+  return (
+    <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      {cards.map(({ label, desc, icon: Icon, href }) => (
+        <Link
+          key={label}
+          href={href}
+          className="group flex h-[124px] flex-col items-start justify-between rounded-[18px] border border-bordergray bg-white p-4 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-[#111111]/30 hover:shadow-[0_14px_34px_rgba(17,17,17,0.07)]"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F7EFE5] transition-colors duration-300 group-hover:bg-[#F1E4D4]">
+            <Icon size={18} strokeWidth={1.6} className="text-[#7A6A56]" />
+          </span>
+          <span className="w-full">
+            <span className="block text-sm font-medium text-textdark">{label}</span>
+            <span className="mt-0.5 block text-xs text-textgray">{desc}</span>
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 export function SkinGuideSection() {
   return (
@@ -37,37 +79,12 @@ export function SkinGuideSection() {
         <div className="grid gap-5 lg:grid-cols-2">
           <div className="rounded-[24px] border border-bordergray bg-white p-5">
             <h3 className="font-serif text-xl text-[#111111]">Shop by Skin Type</h3>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {SKIN_TYPES.map((type) => (
-                <Link
-                  key={type.label}
-                  href="/skincare"
-                  className="group flex flex-col gap-2 rounded-[18px] border border-bordergray bg-white px-4 py-4 transition-all hover:border-[#111111] hover:shadow-sm"
-                >
-                  <span className="text-2xl">{type.icon}</span>
-                  <span className="text-sm font-medium text-textdark">{type.label}</span>
-                  <span className="text-xs text-textgray">{type.desc}</span>
-                </Link>
-              ))}
-            </div>
+            <NeedGrid cards={SKIN_TYPES} />
           </div>
 
           <div className="rounded-[24px] border border-bordergray bg-white p-5">
             <h3 className="font-serif text-xl text-[#111111]">Shop by Concern</h3>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {CONCERNS.map((concern) => (
-                <Link
-                  key={concern.label}
-                  href="/skincare"
-                  className={`group flex flex-col items-start gap-3 rounded-[18px] ${concern.bg} p-4 transition-opacity hover:opacity-85`}
-                >
-                  <span className="text-2xl">{concern.icon}</span>
-                  <span className={`text-sm font-semibold ${concern.text}`}>
-                    {concern.label}
-                  </span>
-                </Link>
-              ))}
-            </div>
+            <NeedGrid cards={CONCERNS} />
           </div>
         </div>
       </div>

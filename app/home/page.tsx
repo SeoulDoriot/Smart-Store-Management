@@ -7,6 +7,7 @@ import { PromoProductStrip } from "@/components/home/PromoProductStrip";
 import { ProductSection } from "@/components/home/ProductSection";
 import { SkinGuideSection } from "@/components/home/SkinGuideSection";
 import { BrandsSection } from "@/components/home/BrandsSection";
+import { MenGroomingSection } from "@/components/home/MenGroomingSection";
 import { AIAdvisorBanner } from "@/components/home/AIAdvisorBanner";
 import { DigitalShelfTeaser } from "@/components/home/DigitalShelfTeaser";
 import { TrustSection } from "@/components/home/TrustSection";
@@ -59,6 +60,8 @@ export default async function HomePage() {
         />
 
         <BrandsSection />
+
+        <MenGroomingSection />
 
         <SkinGuideSection />
 
